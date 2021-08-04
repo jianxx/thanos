@@ -6,8 +6,8 @@ go_library(
     importpath = "github.com/thanos-io/thanos/pkg/tls",
     visibility = ["//visibility:public"],
     deps = [
-        "@com_github_go_kit_kit//log:go_default_library",
-        "@com_github_go_kit_kit//log/level:go_default_library",
-        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_go_kit_kit//log",
+        "@com_github_go_kit_kit//log/level",
+        "@com_github_pkg_errors//:errors",
     ],
 )

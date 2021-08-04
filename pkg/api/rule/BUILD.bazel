@@ -12,9 +12,9 @@ go_library(
         "//pkg/logging",
         "//pkg/rules",
         "//pkg/rules/rulespb",
-        "@com_github_go_kit_kit//log:go_default_library",
-        "@com_github_opentracing_opentracing_go//:go_default_library",
-        "@com_github_prometheus_client_golang//prometheus:go_default_library",
-        "@com_github_prometheus_common//route:go_default_library",
+        "@com_github_go_kit_kit//log",
+        "@com_github_opentracing_opentracing_go//:opentracing-go",
+        "@com_github_prometheus_client_golang//prometheus",
+        "@com_github_prometheus_common//route",
     ],
 )

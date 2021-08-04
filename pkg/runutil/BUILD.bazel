@@ -7,9 +7,9 @@ go_library(
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/errutil",
-        "@com_github_go_kit_kit//log:go_default_library",
-        "@com_github_go_kit_kit//log/level:go_default_library",
-        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_go_kit_kit//log",
+        "@com_github_go_kit_kit//log/level",
+        "@com_github_pkg_errors//:errors",
     ],
 )
 
@@ -22,6 +22,6 @@ go_test(
     embed = [":runutil"],
     deps = [
         "//pkg/testutil",
-        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_pkg_errors//:errors",
     ],
 )

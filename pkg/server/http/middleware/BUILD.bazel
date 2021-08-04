@@ -5,5 +5,5 @@ go_library(
     srcs = ["request_id.go"],
     importpath = "github.com/thanos-io/thanos/pkg/server/http/middleware",
     visibility = ["//visibility:public"],
-    deps = ["@com_github_oklog_ulid//:go_default_library"],
+    deps = ["@com_github_oklog_ulid//:ulid"],
 )

@@ -9,10 +9,10 @@ go_library(
     importpath = "github.com/thanos-io/thanos/pkg/model",
     visibility = ["//visibility:public"],
     deps = [
-        "@com_github_alecthomas_units//:go_default_library",
-        "@com_github_prometheus_common//model:go_default_library",
-        "@com_github_prometheus_prometheus//pkg/timestamp:go_default_library",
-        "@in_gopkg_alecthomas_kingpin_v2//:go_default_library",
+        "@com_github_alecthomas_units//:units",
+        "@com_github_prometheus_common//model",
+        "@com_github_prometheus_prometheus//pkg/timestamp",
+        "@in_gopkg_alecthomas_kingpin_v2//:kingpin_v2",
     ],
 )
 
@@ -25,8 +25,8 @@ go_test(
     embed = [":model"],
     deps = [
         "//pkg/testutil",
-        "@com_github_prometheus_prometheus//pkg/timestamp:go_default_library",
-        "@in_gopkg_alecthomas_kingpin_v2//:go_default_library",
-        "@in_gopkg_yaml_v2//:go_default_library",
+        "@com_github_prometheus_prometheus//pkg/timestamp",
+        "@in_gopkg_alecthomas_kingpin_v2//:kingpin_v2",
+        "@in_gopkg_yaml_v2//:yaml_v2",
     ],
 )

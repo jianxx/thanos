@@ -8,9 +8,9 @@ go_library(
     deps = [
         "//pkg/objstore",
         "//pkg/objstore/clientutil",
-        "@com_github_aliyun_aliyun_oss_go_sdk//oss:go_default_library",
-        "@com_github_go_kit_kit//log:go_default_library",
-        "@com_github_pkg_errors//:go_default_library",
-        "@in_gopkg_yaml_v2//:go_default_library",
+        "@com_github_aliyun_aliyun_oss_go_sdk//oss",
+        "@com_github_go_kit_kit//log",
+        "@com_github_pkg_errors//:errors",
+        "@in_gopkg_yaml_v2//:yaml_v2",
     ],
 )

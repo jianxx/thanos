@@ -6,9 +6,9 @@ go_library(
     importpath = "github.com/thanos-io/thanos/pkg/tracing/elasticapm",
     visibility = ["//visibility:public"],
     deps = [
-        "@co_elastic_go_apm//:go_default_library",
-        "@co_elastic_go_apm_module_apmot//:go_default_library",
-        "@com_github_opentracing_opentracing_go//:go_default_library",
-        "@in_gopkg_yaml_v2//:go_default_library",
+        "@co_elastic_go_apm//:apm",
+        "@co_elastic_go_apm_module_apmot//:apmot",
+        "@com_github_opentracing_opentracing_go//:opentracing-go",
+        "@in_gopkg_yaml_v2//:yaml_v2",
     ],
 )

@@ -10,10 +10,10 @@ go_library(
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/compact/downsample",
-        "@com_github_prometheus_prometheus//pkg/labels:go_default_library",
-        "@com_github_prometheus_prometheus//storage:go_default_library",
-        "@com_github_prometheus_prometheus//tsdb/chunkenc:go_default_library",
-        "@com_github_prometheus_prometheus//tsdb/chunks:go_default_library",
+        "@com_github_prometheus_prometheus//pkg/labels",
+        "@com_github_prometheus_prometheus//storage",
+        "@com_github_prometheus_prometheus//tsdb/chunkenc",
+        "@com_github_prometheus_prometheus//tsdb/chunks",
     ],
 )
 
@@ -27,10 +27,10 @@ go_test(
     deps = [
         "//pkg/compact/downsample",
         "//pkg/testutil",
-        "@com_github_prometheus_prometheus//pkg/labels:go_default_library",
-        "@com_github_prometheus_prometheus//storage:go_default_library",
-        "@com_github_prometheus_prometheus//tsdb/chunkenc:go_default_library",
-        "@com_github_prometheus_prometheus//tsdb/chunks:go_default_library",
-        "@com_github_prometheus_prometheus//tsdb/tsdbutil:go_default_library",
+        "@com_github_prometheus_prometheus//pkg/labels",
+        "@com_github_prometheus_prometheus//storage",
+        "@com_github_prometheus_prometheus//tsdb/chunkenc",
+        "@com_github_prometheus_prometheus//tsdb/chunks",
+        "@com_github_prometheus_prometheus//tsdb/tsdbutil",
     ],
 )

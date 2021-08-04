@@ -6,10 +6,10 @@ go_library(
     importpath = "github.com/thanos-io/thanos/pkg/extprom/http",
     visibility = ["//visibility:public"],
     deps = [
-        "@com_github_opentracing_opentracing_go//:go_default_library",
-        "@com_github_prometheus_client_golang//prometheus:go_default_library",
-        "@com_github_prometheus_client_golang//prometheus/promauto:go_default_library",
-        "@com_github_prometheus_client_golang//prometheus/promhttp:go_default_library",
-        "@com_github_uber_jaeger_client_go//:go_default_library",
+        "@com_github_opentracing_opentracing_go//:opentracing-go",
+        "@com_github_prometheus_client_golang//prometheus",
+        "@com_github_prometheus_client_golang//prometheus/promauto",
+        "@com_github_prometheus_client_golang//prometheus/promhttp",
+        "@com_github_uber_jaeger_client_go//:jaeger-client-go",
     ],
 )

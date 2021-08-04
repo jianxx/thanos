@@ -43,9 +43,9 @@ go_library(
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/store/labelpb",
-        "@com_github_gogo_protobuf//types:go_default_library",
-        "@com_github_pkg_errors//:go_default_library",
-        "@com_github_prometheus_prometheus//pkg/labels:go_default_library",
+        "@com_github_gogo_protobuf//types",
+        "@com_github_pkg_errors//:errors",
+        "@com_github_prometheus_prometheus//pkg/labels",
         "@org_golang_google_grpc//:go_default_library",
     ],
 )
@@ -60,9 +60,9 @@ go_test(
     deps = [
         "//pkg/store/labelpb",
         "//pkg/testutil",
-        "@com_github_pkg_errors//:go_default_library",
-        "@com_github_prometheus_prometheus//pkg/labels:go_default_library",
-        "@com_github_prometheus_prometheus//promql/parser:go_default_library",
-        "@com_github_prometheus_prometheus//tsdb/chunkenc:go_default_library",
+        "@com_github_pkg_errors//:errors",
+        "@com_github_prometheus_prometheus//pkg/labels",
+        "@com_github_prometheus_prometheus//promql/parser",
+        "@com_github_prometheus_prometheus//tsdb/chunkenc",
     ],
 )

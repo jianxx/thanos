@@ -5,7 +5,7 @@ go_library(
     srcs = ["pool.go"],
     importpath = "github.com/thanos-io/thanos/pkg/pool",
     visibility = ["//visibility:public"],
-    deps = ["@com_github_pkg_errors//:go_default_library"],
+    deps = ["@com_github_pkg_errors//:errors"],
 )
 
 go_test(
@@ -14,7 +14,7 @@ go_test(
     embed = [":pool"],
     deps = [
         "//pkg/testutil",
-        "@com_github_pkg_errors//:go_default_library",
-        "@org_uber_go_goleak//:go_default_library",
+        "@com_github_pkg_errors//:errors",
+        "@org_uber_go_goleak//:goleak",
     ],
 )

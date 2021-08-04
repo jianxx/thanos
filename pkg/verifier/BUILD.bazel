@@ -16,13 +16,13 @@ go_library(
         "//pkg/block/metadata",
         "//pkg/compact",
         "//pkg/objstore",
-        "@com_github_go_kit_kit//log:go_default_library",
-        "@com_github_go_kit_kit//log/level:go_default_library",
-        "@com_github_oklog_ulid//:go_default_library",
-        "@com_github_pkg_errors//:go_default_library",
-        "@com_github_prometheus_client_golang//prometheus:go_default_library",
-        "@com_github_prometheus_client_golang//prometheus/promauto:go_default_library",
-        "@com_github_prometheus_prometheus//tsdb:go_default_library",
+        "@com_github_go_kit_kit//log",
+        "@com_github_go_kit_kit//log/level",
+        "@com_github_oklog_ulid//:ulid",
+        "@com_github_pkg_errors//:errors",
+        "@com_github_prometheus_client_golang//prometheus",
+        "@com_github_prometheus_client_golang//prometheus/promauto",
+        "@com_github_prometheus_prometheus//tsdb",
     ],
 )
 
@@ -32,7 +32,7 @@ go_test(
     embed = [":verifier"],
     deps = [
         "//pkg/testutil",
-        "@com_github_oklog_ulid//:go_default_library",
-        "@com_github_prometheus_prometheus//tsdb:go_default_library",
+        "@com_github_oklog_ulid//:ulid",
+        "@com_github_prometheus_prometheus//tsdb",
     ],
 )

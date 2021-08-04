@@ -10,14 +10,14 @@ go_library(
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/objstore",
-        "@com_github_azure_azure_pipeline_go//pipeline:go_default_library",
-        "@com_github_azure_azure_storage_blob_go//azblob:go_default_library",
-        "@com_github_azure_go_autorest_autorest_azure_auth//:go_default_library",
-        "@com_github_go_kit_kit//log:go_default_library",
-        "@com_github_go_kit_kit//log/level:go_default_library",
-        "@com_github_pkg_errors//:go_default_library",
-        "@com_github_prometheus_common//model:go_default_library",
-        "@in_gopkg_yaml_v2//:go_default_library",
+        "@com_github_azure_azure_pipeline_go//pipeline",
+        "@com_github_azure_azure_storage_blob_go//azblob",
+        "@com_github_azure_go_autorest_autorest_azure_auth//:auth",
+        "@com_github_go_kit_kit//log",
+        "@com_github_go_kit_kit//log/level",
+        "@com_github_pkg_errors//:errors",
+        "@com_github_prometheus_common//model",
+        "@in_gopkg_yaml_v2//:yaml_v2",
     ],
 )
 

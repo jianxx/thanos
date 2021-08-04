@@ -8,15 +8,15 @@ go_library(
     deps = [
         "//pkg/objstore",
         "//pkg/runutil",
-        "@com_github_go_kit_kit//log:go_default_library",
-        "@com_github_go_kit_kit//log/level:go_default_library",
-        "@com_github_minio_minio_go_v7//:go_default_library",
-        "@com_github_minio_minio_go_v7//pkg/credentials:go_default_library",
-        "@com_github_minio_minio_go_v7//pkg/encrypt:go_default_library",
-        "@com_github_pkg_errors//:go_default_library",
-        "@com_github_prometheus_common//model:go_default_library",
-        "@com_github_prometheus_common//version:go_default_library",
-        "@in_gopkg_yaml_v2//:go_default_library",
+        "@com_github_go_kit_kit//log",
+        "@com_github_go_kit_kit//log/level",
+        "@com_github_minio_minio_go_v7//:minio-go",
+        "@com_github_minio_minio_go_v7//pkg/credentials",
+        "@com_github_minio_minio_go_v7//pkg/encrypt",
+        "@com_github_pkg_errors//:errors",
+        "@com_github_prometheus_common//model",
+        "@com_github_prometheus_common//version",
+        "@in_gopkg_yaml_v2//:yaml_v2",
     ],
 )
 
@@ -30,9 +30,9 @@ go_test(
     deps = [
         "//pkg/testutil",
         "//test/e2e/e2ethanos",
-        "@com_github_cortexproject_cortex//integration/e2e:go_default_library",
-        "@com_github_cortexproject_cortex//integration/e2e/db:go_default_library",
-        "@com_github_go_kit_kit//log:go_default_library",
-        "@com_github_minio_minio_go_v7//pkg/encrypt:go_default_library",
+        "@com_github_cortexproject_cortex//integration/e2e",
+        "@com_github_cortexproject_cortex//integration/e2e/db",
+        "@com_github_go_kit_kit//log",
+        "@com_github_minio_minio_go_v7//pkg/encrypt",
     ],
 )

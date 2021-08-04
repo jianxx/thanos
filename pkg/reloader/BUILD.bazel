@@ -7,12 +7,12 @@ go_library(
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/runutil",
-        "@com_github_fsnotify_fsnotify//:go_default_library",
-        "@com_github_go_kit_kit//log:go_default_library",
-        "@com_github_go_kit_kit//log/level:go_default_library",
-        "@com_github_pkg_errors//:go_default_library",
-        "@com_github_prometheus_client_golang//prometheus:go_default_library",
-        "@com_github_prometheus_client_golang//prometheus/promauto:go_default_library",
+        "@com_github_fsnotify_fsnotify//:fsnotify",
+        "@com_github_go_kit_kit//log",
+        "@com_github_go_kit_kit//log/level",
+        "@com_github_pkg_errors//:errors",
+        "@com_github_prometheus_client_golang//prometheus",
+        "@com_github_prometheus_client_golang//prometheus/promauto",
     ],
 )
 
@@ -25,10 +25,10 @@ go_test(
     embed = [":reloader"],
     deps = [
         "//pkg/testutil",
-        "@com_github_go_kit_kit//log:go_default_library",
-        "@com_github_prometheus_client_golang//prometheus:go_default_library",
-        "@com_github_prometheus_client_golang//prometheus/testutil:go_default_library",
-        "@org_uber_go_atomic//:go_default_library",
-        "@org_uber_go_goleak//:go_default_library",
+        "@com_github_go_kit_kit//log",
+        "@com_github_prometheus_client_golang//prometheus",
+        "@com_github_prometheus_client_golang//prometheus/testutil",
+        "@org_uber_go_atomic//:atomic",
+        "@org_uber_go_goleak//:goleak",
     ],
 )

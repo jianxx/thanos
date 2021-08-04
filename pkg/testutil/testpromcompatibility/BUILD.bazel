@@ -6,7 +6,7 @@ go_library(
     importpath = "github.com/thanos-io/thanos/pkg/testutil/testpromcompatibility",
     visibility = ["//visibility:public"],
     deps = [
-        "@com_github_prometheus_prometheus//pkg/labels:go_default_library",
-        "@com_github_prometheus_prometheus//rules:go_default_library",
+        "@com_github_prometheus_prometheus//pkg/labels",
+        "@com_github_prometheus_prometheus//rules",
     ],
 )

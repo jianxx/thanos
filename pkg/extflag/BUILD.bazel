@@ -5,5 +5,5 @@ go_library(
     srcs = ["hidden.go"],
     importpath = "github.com/thanos-io/thanos/pkg/extflag",
     visibility = ["//visibility:public"],
-    deps = ["@in_gopkg_alecthomas_kingpin_v2//:go_default_library"],
+    deps = ["@in_gopkg_alecthomas_kingpin_v2//:kingpin_v2"],
 )

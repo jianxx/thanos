@@ -24,9 +24,9 @@ go_library(
     importpath = "github.com/thanos-io/thanos/pkg/store/labelpb",
     visibility = ["//visibility:public"],
     deps = [
-        "@com_github_cespare_xxhash_v2//:go_default_library",
-        "@com_github_pkg_errors//:go_default_library",
-        "@com_github_prometheus_prometheus//pkg/labels:go_default_library",
+        "@com_github_cespare_xxhash_v2//:xxhash",
+        "@com_github_pkg_errors//:errors",
+        "@com_github_prometheus_prometheus//pkg/labels",
     ],
 )
 
@@ -36,6 +36,6 @@ go_test(
     embed = [":labelpb"],
     deps = [
         "//pkg/testutil",
-        "@com_github_prometheus_prometheus//pkg/labels:go_default_library",
+        "@com_github_prometheus_prometheus//pkg/labels",
     ],
 )

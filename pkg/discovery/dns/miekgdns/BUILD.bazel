@@ -9,7 +9,7 @@ go_library(
     importpath = "github.com/thanos-io/thanos/pkg/discovery/dns/miekgdns",
     visibility = ["//visibility:public"],
     deps = [
-        "@com_github_miekg_dns//:go_default_library",
-        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_miekg_dns//:dns",
+        "@com_github_pkg_errors//:errors",
     ],
 )

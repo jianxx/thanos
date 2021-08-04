@@ -10,12 +10,12 @@ go_library(
     importpath = "github.com/thanos-io/thanos/pkg/tracing",
     visibility = ["//visibility:public"],
     deps = [
-        "@com_github_go_kit_kit//log:go_default_library",
-        "@com_github_go_kit_kit//log/level:go_default_library",
-        "@com_github_grpc_ecosystem_go_grpc_middleware_v2//:go_default_library",
-        "@com_github_grpc_ecosystem_go_grpc_middleware_v2//interceptors/tracing:go_default_library",
-        "@com_github_opentracing_opentracing_go//:go_default_library",
-        "@com_github_opentracing_opentracing_go//ext:go_default_library",
+        "@com_github_go_kit_kit//log",
+        "@com_github_go_kit_kit//log/level",
+        "@com_github_grpc_ecosystem_go_grpc_middleware_v2//:go-grpc-middleware",
+        "@com_github_grpc_ecosystem_go_grpc_middleware_v2//interceptors/tracing",
+        "@com_github_opentracing_opentracing_go//:opentracing-go",
+        "@com_github_opentracing_opentracing_go//ext",
         "@org_golang_google_grpc//:go_default_library",
     ],
 )

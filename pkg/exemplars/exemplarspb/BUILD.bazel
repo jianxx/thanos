@@ -34,8 +34,8 @@ go_library(
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/store/labelpb",
-        "@com_github_prometheus_common//model:go_default_library",
-        "@com_github_prometheus_prometheus//pkg/exemplar:go_default_library",
-        "@com_github_prometheus_prometheus//pkg/labels:go_default_library",
+        "@com_github_prometheus_common//model",
+        "@com_github_prometheus_prometheus//pkg/exemplar",
+        "@com_github_prometheus_prometheus//pkg/labels",
     ],
 )
