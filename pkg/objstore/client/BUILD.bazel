@@ -1,0 +1,23 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "client",
+    srcs = ["factory.go"],
+    importpath = "github.com/thanos-io/thanos/pkg/objstore/client",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/objstore",
+        "//pkg/objstore/azure",
+        "//pkg/objstore/cos",
+        "//pkg/objstore/filesystem",
+        "//pkg/objstore/gcs",
+        "//pkg/objstore/oss",
+        "//pkg/objstore/s3",
+        "//pkg/objstore/swift",
+        "@com_github_go_kit_kit//log:go_default_library",
+        "@com_github_go_kit_kit//log/level:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_prometheus_client_golang//prometheus:go_default_library",
+        "@in_gopkg_yaml_v2//:go_default_library",
+    ],
+)

@@ -1,0 +1,63 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "compact",
+    srcs = [
+        "blocks_cleaner.go",
+        "clean.go",
+        "compact.go",
+        "planner.go",
+        "retention.go",
+    ],
+    importpath = "github.com/thanos-io/thanos/pkg/compact",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/block",
+        "//pkg/block/metadata",
+        "//pkg/compact/downsample",
+        "//pkg/errutil",
+        "//pkg/extprom",
+        "//pkg/objstore",
+        "//pkg/runutil",
+        "@com_github_go_kit_kit//log:go_default_library",
+        "@com_github_go_kit_kit//log/level:go_default_library",
+        "@com_github_oklog_ulid//:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_prometheus_client_golang//prometheus:go_default_library",
+        "@com_github_prometheus_client_golang//prometheus/promauto:go_default_library",
+        "@com_github_prometheus_prometheus//pkg/labels:go_default_library",
+        "@com_github_prometheus_prometheus//tsdb:go_default_library",
+        "@org_golang_x_sync//errgroup:go_default_library",
+    ],
+)
+
+go_test(
+    name = "compact_test",
+    srcs = [
+        "clean_test.go",
+        "compact_e2e_test.go",
+        "compact_test.go",
+        "planner_test.go",
+        "retention_test.go",
+    ],
+    embed = [":compact"],
+    deps = [
+        "//pkg/block",
+        "//pkg/block/metadata",
+        "//pkg/dedup",
+        "//pkg/errutil",
+        "//pkg/objstore",
+        "//pkg/objstore/objtesting",
+        "//pkg/testutil",
+        "//pkg/testutil/e2eutil",
+        "@com_github_go_kit_kit//log:go_default_library",
+        "@com_github_oklog_ulid//:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_prometheus_client_golang//prometheus:go_default_library",
+        "@com_github_prometheus_client_golang//prometheus/promauto:go_default_library",
+        "@com_github_prometheus_client_golang//prometheus/testutil:go_default_library",
+        "@com_github_prometheus_prometheus//pkg/labels:go_default_library",
+        "@com_github_prometheus_prometheus//storage:go_default_library",
+        "@com_github_prometheus_prometheus//tsdb:go_default_library",
+    ],
+)

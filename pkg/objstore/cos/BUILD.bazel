@@ -1,0 +1,29 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "cos",
+    srcs = ["cos.go"],
+    importpath = "github.com/thanos-io/thanos/pkg/objstore/cos",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/exthttp",
+        "//pkg/objstore",
+        "//pkg/objstore/clientutil",
+        "//pkg/runutil",
+        "@com_github_go_kit_kit//log:go_default_library",
+        "@com_github_mozillazg_go_cos//:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_prometheus_common//model:go_default_library",
+        "@in_gopkg_yaml_v2//:go_default_library",
+    ],
+)
+
+go_test(
+    name = "cos_test",
+    srcs = ["cos_test.go"],
+    embed = [":cos"],
+    deps = [
+        "//pkg/testutil",
+        "@com_github_prometheus_common//model:go_default_library",
+    ],
+)

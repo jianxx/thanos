@@ -1,0 +1,34 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "objstore",
+    srcs = [
+        "inmem.go",
+        "objstore.go",
+        "testing.go",
+        "tracing.go",
+    ],
+    importpath = "github.com/thanos-io/thanos/pkg/objstore",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/runutil",
+        "//pkg/testutil",
+        "//pkg/tracing",
+        "@com_github_go_kit_kit//log:go_default_library",
+        "@com_github_go_kit_kit//log/level:go_default_library",
+        "@com_github_opentracing_opentracing_go//:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_prometheus_client_golang//prometheus:go_default_library",
+        "@com_github_prometheus_client_golang//prometheus/promauto:go_default_library",
+    ],
+)
+
+go_test(
+    name = "objstore_test",
+    srcs = ["objstore_test.go"],
+    embed = [":objstore"],
+    deps = [
+        "//pkg/testutil",
+        "@com_github_prometheus_client_golang//prometheus/testutil:go_default_library",
+    ],
+)

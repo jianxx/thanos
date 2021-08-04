@@ -1,0 +1,55 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "indexheader",
+    srcs = [
+        "binary_reader.go",
+        "header.go",
+        "lazy_binary_reader.go",
+        "reader_pool.go",
+    ],
+    importpath = "github.com/thanos-io/thanos/pkg/block/indexheader",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/block",
+        "//pkg/objstore",
+        "//pkg/runutil",
+        "@com_github_go_kit_kit//log:go_default_library",
+        "@com_github_go_kit_kit//log/level:go_default_library",
+        "@com_github_oklog_ulid//:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_prometheus_client_golang//prometheus:go_default_library",
+        "@com_github_prometheus_client_golang//prometheus/promauto:go_default_library",
+        "@com_github_prometheus_prometheus//tsdb/encoding:go_default_library",
+        "@com_github_prometheus_prometheus//tsdb/fileutil:go_default_library",
+        "@com_github_prometheus_prometheus//tsdb/index:go_default_library",
+        "@org_uber_go_atomic//:go_default_library",
+    ],
+)
+
+go_test(
+    name = "indexheader_test",
+    srcs = [
+        "header_test.go",
+        "lazy_binary_reader_test.go",
+        "reader_pool_test.go",
+    ],
+    data = glob(["testdata/**"]),
+    embed = [":indexheader"],
+    deps = [
+        "//pkg/block",
+        "//pkg/block/metadata",
+        "//pkg/objstore",
+        "//pkg/objstore/filesystem",
+        "//pkg/testutil",
+        "//pkg/testutil/e2eutil",
+        "@com_github_go_kit_kit//log:go_default_library",
+        "@com_github_oklog_ulid//:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_prometheus_client_golang//prometheus/testutil:go_default_library",
+        "@com_github_prometheus_prometheus//pkg/labels:go_default_library",
+        "@com_github_prometheus_prometheus//tsdb/encoding:go_default_library",
+        "@com_github_prometheus_prometheus//tsdb/fileutil:go_default_library",
+        "@com_github_prometheus_prometheus//tsdb/index:go_default_library",
+    ],
+)

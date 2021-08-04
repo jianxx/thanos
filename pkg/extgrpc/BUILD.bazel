@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "extgrpc",
+    srcs = ["client.go"],
+    importpath = "github.com/thanos-io/thanos/pkg/extgrpc",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/tls",
+        "//pkg/tracing",
+        "@com_github_go_kit_kit//log:go_default_library",
+        "@com_github_go_kit_kit//log/level:go_default_library",
+        "@com_github_grpc_ecosystem_go_grpc_middleware_v2//:go_default_library",
+        "@com_github_grpc_ecosystem_go_grpc_prometheus//:go_default_library",
+        "@com_github_opentracing_opentracing_go//:go_default_library",
+        "@com_github_prometheus_client_golang//prometheus:go_default_library",
+        "@org_golang_google_grpc//:go_default_library",
+        "@org_golang_google_grpc//credentials:go_default_library",
+    ],
+)

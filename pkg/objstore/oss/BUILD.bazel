@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "oss",
+    srcs = ["oss.go"],
+    importpath = "github.com/thanos-io/thanos/pkg/objstore/oss",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/objstore",
+        "//pkg/objstore/clientutil",
+        "@com_github_aliyun_aliyun_oss_go_sdk//oss:go_default_library",
+        "@com_github_go_kit_kit//log:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+        "@in_gopkg_yaml_v2//:go_default_library",
+    ],
+)

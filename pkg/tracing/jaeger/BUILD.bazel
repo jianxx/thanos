@@ -1,0 +1,24 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "jaeger",
+    srcs = [
+        "config_yaml.go",
+        "jaeger.go",
+        "logger.go",
+    ],
+    importpath = "github.com/thanos-io/thanos/pkg/tracing/jaeger",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/tracing",
+        "@com_github_go_kit_kit//log:go_default_library",
+        "@com_github_go_kit_kit//log/level:go_default_library",
+        "@com_github_opentracing_opentracing_go//:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_prometheus_client_golang//prometheus:go_default_library",
+        "@com_github_uber_jaeger_client_go//:go_default_library",
+        "@com_github_uber_jaeger_client_go//config:go_default_library",
+        "@com_github_uber_jaeger_lib//metrics/prometheus:go_default_library",
+        "@in_gopkg_yaml_v2//:go_default_library",
+    ],
+)

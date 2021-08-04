@@ -1,0 +1,36 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "ui",
+    srcs = [
+        "bindata.go",
+        "bucket.go",
+        "query.go",
+        "rule.go",
+        "ui.go",
+    ],
+    importpath = "github.com/thanos-io/thanos/pkg/ui",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/api",
+        "//pkg/block/metadata",
+        "//pkg/component",
+        "//pkg/extprom/http",
+        "//pkg/query",
+        "//pkg/rules",
+        "@com_github_go_kit_kit//log:go_default_library",
+        "@com_github_go_kit_kit//log/level:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_prometheus_client_golang//prometheus:go_default_library",
+        "@com_github_prometheus_common//model:go_default_library",
+        "@com_github_prometheus_common//route:go_default_library",
+        "@com_github_prometheus_common//version:go_default_library",
+        "@com_github_prometheus_prometheus//rules:go_default_library",
+    ],
+)
+
+go_test(
+    name = "ui_test",
+    srcs = ["ui_test.go"],
+    embed = [":ui"],
+)

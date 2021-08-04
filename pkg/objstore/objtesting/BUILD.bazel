@@ -1,0 +1,27 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "objtesting",
+    srcs = ["foreach.go"],
+    importpath = "github.com/thanos-io/thanos/pkg/objstore/objtesting",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/objstore",
+        "//pkg/objstore/azure",
+        "//pkg/objstore/client",
+        "//pkg/objstore/cos",
+        "//pkg/objstore/filesystem",
+        "//pkg/objstore/gcs",
+        "//pkg/objstore/oss",
+        "//pkg/objstore/s3",
+        "//pkg/objstore/swift",
+        "//pkg/testutil",
+    ],
+)
+
+go_test(
+    name = "objtesting_test",
+    srcs = ["acceptance_e2e_test.go"],
+    embed = [":objtesting"],
+    deps = ["//pkg/objstore"],
+)

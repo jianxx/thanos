@@ -1,0 +1,38 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "s3",
+    srcs = ["s3.go"],
+    importpath = "github.com/thanos-io/thanos/pkg/objstore/s3",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/objstore",
+        "//pkg/runutil",
+        "@com_github_go_kit_kit//log:go_default_library",
+        "@com_github_go_kit_kit//log/level:go_default_library",
+        "@com_github_minio_minio_go_v7//:go_default_library",
+        "@com_github_minio_minio_go_v7//pkg/credentials:go_default_library",
+        "@com_github_minio_minio_go_v7//pkg/encrypt:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_prometheus_common//model:go_default_library",
+        "@com_github_prometheus_common//version:go_default_library",
+        "@in_gopkg_yaml_v2//:go_default_library",
+    ],
+)
+
+go_test(
+    name = "s3_test",
+    srcs = [
+        "s3_e2e_test.go",
+        "s3_test.go",
+    ],
+    embed = [":s3"],
+    deps = [
+        "//pkg/testutil",
+        "//test/e2e/e2ethanos",
+        "@com_github_cortexproject_cortex//integration/e2e:go_default_library",
+        "@com_github_cortexproject_cortex//integration/e2e/db:go_default_library",
+        "@com_github_go_kit_kit//log:go_default_library",
+        "@com_github_minio_minio_go_v7//pkg/encrypt:go_default_library",
+    ],
+)

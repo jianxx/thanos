@@ -1,0 +1,32 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "azure",
+    srcs = [
+        "azure.go",
+        "helpers.go",
+    ],
+    importpath = "github.com/thanos-io/thanos/pkg/objstore/azure",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/objstore",
+        "@com_github_azure_azure_pipeline_go//pipeline:go_default_library",
+        "@com_github_azure_azure_storage_blob_go//azblob:go_default_library",
+        "@com_github_azure_go_autorest_autorest_azure_auth//:go_default_library",
+        "@com_github_go_kit_kit//log:go_default_library",
+        "@com_github_go_kit_kit//log/level:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_prometheus_common//model:go_default_library",
+        "@in_gopkg_yaml_v2//:go_default_library",
+    ],
+)
+
+go_test(
+    name = "azure_test",
+    srcs = [
+        "azure_test.go",
+        "helpers_test.go",
+    ],
+    embed = [":azure"],
+    deps = ["//pkg/testutil"],
+)

@@ -1,0 +1,38 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "verifier",
+    srcs = [
+        "duplicated_compaction.go",
+        "index_issue.go",
+        "overlapped_blocks.go",
+        "safe_delete.go",
+        "verify.go",
+    ],
+    importpath = "github.com/thanos-io/thanos/pkg/verifier",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/block",
+        "//pkg/block/metadata",
+        "//pkg/compact",
+        "//pkg/objstore",
+        "@com_github_go_kit_kit//log:go_default_library",
+        "@com_github_go_kit_kit//log/level:go_default_library",
+        "@com_github_oklog_ulid//:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_prometheus_client_golang//prometheus:go_default_library",
+        "@com_github_prometheus_client_golang//prometheus/promauto:go_default_library",
+        "@com_github_prometheus_prometheus//tsdb:go_default_library",
+    ],
+)
+
+go_test(
+    name = "verifier_test",
+    srcs = ["duplicated_compaction_test.go"],
+    embed = [":verifier"],
+    deps = [
+        "//pkg/testutil",
+        "@com_github_oklog_ulid//:go_default_library",
+        "@com_github_prometheus_prometheus//tsdb:go_default_library",
+    ],
+)

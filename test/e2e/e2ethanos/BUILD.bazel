@@ -1,0 +1,27 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "e2ethanos",
+    srcs = [
+        "helpers.go",
+        "service.go",
+        "services.go",
+    ],
+    importpath = "github.com/thanos-io/thanos/test/e2e/e2ethanos",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/alert",
+        "//pkg/objstore/client",
+        "//pkg/query",
+        "//pkg/queryfrontend",
+        "//pkg/receive",
+        "//pkg/testutil",
+        "@com_github_cortexproject_cortex//integration/e2e:go_default_library",
+        "@com_github_cortexproject_cortex//pkg/util:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_prometheus_common//model:go_default_library",
+        "@com_github_prometheus_prometheus//discovery/targetgroup:go_default_library",
+        "@com_github_prometheus_prometheus//pkg/relabel:go_default_library",
+        "@in_gopkg_yaml_v2//:go_default_library",
+    ],
+)

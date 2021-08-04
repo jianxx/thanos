@@ -1,0 +1,28 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "e2eutil",
+    srcs = [
+        "copy.go",
+        "port.go",
+        "prometheus.go",
+        "sysprocattr.go",
+        "sysprocattr_linux.go",
+    ],
+    importpath = "github.com/thanos-io/thanos/pkg/testutil/e2eutil",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/block/metadata",
+        "//pkg/runutil",
+        "//pkg/testutil",
+        "@com_github_go_kit_kit//log:go_default_library",
+        "@com_github_oklog_ulid//:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_prometheus_prometheus//pkg/labels:go_default_library",
+        "@com_github_prometheus_prometheus//pkg/timestamp:go_default_library",
+        "@com_github_prometheus_prometheus//storage:go_default_library",
+        "@com_github_prometheus_prometheus//tsdb:go_default_library",
+        "@com_github_prometheus_prometheus//tsdb/index:go_default_library",
+        "@org_golang_x_sync//errgroup:go_default_library",
+    ],
+)

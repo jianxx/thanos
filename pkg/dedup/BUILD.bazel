@@ -1,0 +1,36 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "dedup",
+    srcs = [
+        "chunk_iter.go",
+        "iter.go",
+    ],
+    importpath = "github.com/thanos-io/thanos/pkg/dedup",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/compact/downsample",
+        "@com_github_prometheus_prometheus//pkg/labels:go_default_library",
+        "@com_github_prometheus_prometheus//storage:go_default_library",
+        "@com_github_prometheus_prometheus//tsdb/chunkenc:go_default_library",
+        "@com_github_prometheus_prometheus//tsdb/chunks:go_default_library",
+    ],
+)
+
+go_test(
+    name = "dedup_test",
+    srcs = [
+        "chunk_iter_test.go",
+        "iter_test.go",
+    ],
+    embed = [":dedup"],
+    deps = [
+        "//pkg/compact/downsample",
+        "//pkg/testutil",
+        "@com_github_prometheus_prometheus//pkg/labels:go_default_library",
+        "@com_github_prometheus_prometheus//storage:go_default_library",
+        "@com_github_prometheus_prometheus//tsdb/chunkenc:go_default_library",
+        "@com_github_prometheus_prometheus//tsdb/chunks:go_default_library",
+        "@com_github_prometheus_prometheus//tsdb/tsdbutil:go_default_library",
+    ],
+)

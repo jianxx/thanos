@@ -1,0 +1,41 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
+
+proto_library(
+    name = "targetspb_proto",
+    srcs = ["rpc.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//gogoproto:gogoproto_proto",
+        "//store/labelpb:labelpb_proto",
+        "//store/storepb:storepb_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+go_proto_library(
+    name = "targetspb_go_proto",
+    compilers = ["@io_bazel_rules_go//proto:go_grpc"],
+    importpath = "github.com/thanos-io/thanos/pkg/targets/targetspb",
+    proto = ":targetspb_proto",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//gogoproto:gogo_proto",
+        "//store/labelpb:types_proto",
+        "//store/storepb:types_proto",
+    ],
+)
+
+go_library(
+    name = "targetspb",
+    srcs = ["custom.go"],
+    embed = [":targetspb_go_proto"],
+    importpath = "github.com/thanos-io/thanos/pkg/targets/targetspb",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/store/labelpb",
+        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_prometheus_prometheus//pkg/labels:go_default_library",
+    ],
+)

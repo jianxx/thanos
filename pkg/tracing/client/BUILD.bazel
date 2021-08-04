@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "client",
+    srcs = ["factory.go"],
+    importpath = "github.com/thanos-io/thanos/pkg/tracing/client",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/tracing/elasticapm",
+        "//pkg/tracing/jaeger",
+        "//pkg/tracing/lightstep",
+        "//pkg/tracing/stackdriver",
+        "@com_github_go_kit_kit//log:go_default_library",
+        "@com_github_go_kit_kit//log/level:go_default_library",
+        "@com_github_opentracing_opentracing_go//:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_prometheus_client_golang//prometheus:go_default_library",
+        "@in_gopkg_yaml_v2//:go_default_library",
+    ],
+)

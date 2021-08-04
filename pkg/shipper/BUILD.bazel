@@ -1,0 +1,47 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "shipper",
+    srcs = ["shipper.go"],
+    importpath = "github.com/thanos-io/thanos/pkg/shipper",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/block",
+        "//pkg/block/metadata",
+        "//pkg/objstore",
+        "//pkg/runutil",
+        "@com_github_go_kit_kit//log:go_default_library",
+        "@com_github_go_kit_kit//log/level:go_default_library",
+        "@com_github_oklog_ulid//:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_prometheus_client_golang//prometheus:go_default_library",
+        "@com_github_prometheus_client_golang//prometheus/promauto:go_default_library",
+        "@com_github_prometheus_prometheus//pkg/labels:go_default_library",
+        "@com_github_prometheus_prometheus//tsdb:go_default_library",
+        "@com_github_prometheus_prometheus//tsdb/fileutil:go_default_library",
+    ],
+)
+
+go_test(
+    name = "shipper_test",
+    srcs = [
+        "shipper_e2e_test.go",
+        "shipper_test.go",
+    ],
+    embed = [":shipper"],
+    deps = [
+        "//pkg/block",
+        "//pkg/block/metadata",
+        "//pkg/objstore",
+        "//pkg/objstore/objtesting",
+        "//pkg/testutil",
+        "//pkg/testutil/e2eutil",
+        "@com_github_go_kit_kit//log:go_default_library",
+        "@com_github_oklog_ulid//:go_default_library",
+        "@com_github_prometheus_client_golang//prometheus:go_default_library",
+        "@com_github_prometheus_client_golang//prometheus/testutil:go_default_library",
+        "@com_github_prometheus_prometheus//pkg/labels:go_default_library",
+        "@com_github_prometheus_prometheus//pkg/timestamp:go_default_library",
+        "@com_github_prometheus_prometheus//tsdb:go_default_library",
+    ],
+)

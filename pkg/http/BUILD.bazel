@@ -1,0 +1,18 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "http",
+    srcs = ["http.go"],
+    importpath = "github.com/thanos-io/thanos/pkg/http",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/discovery/cache",
+        "@com_github_go_kit_kit//log:go_default_library",
+        "@com_github_prometheus_common//config:go_default_library",
+        "@com_github_prometheus_common//model:go_default_library",
+        "@com_github_prometheus_common//version:go_default_library",
+        "@com_github_prometheus_prometheus//discovery/file:go_default_library",
+        "@com_github_prometheus_prometheus//discovery/targetgroup:go_default_library",
+        "@in_gopkg_yaml_v2//:go_default_library",
+    ],
+)

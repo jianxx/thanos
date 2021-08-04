@@ -1,0 +1,29 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "gcs",
+    srcs = ["gcs.go"],
+    importpath = "github.com/thanos-io/thanos/pkg/objstore/gcs",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/objstore",
+        "@com_github_go_kit_kit//log:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_prometheus_common//version:go_default_library",
+        "@com_google_cloud_go_storage//:go_default_library",
+        "@in_gopkg_yaml_v2//:go_default_library",
+        "@org_golang_google_api//iterator:go_default_library",
+        "@org_golang_google_api//option:go_default_library",
+        "@org_golang_x_oauth2//google:go_default_library",
+    ],
+)
+
+go_test(
+    name = "gcs_test",
+    srcs = ["gcs_test.go"],
+    embed = [":gcs"],
+    deps = [
+        "//pkg/testutil",
+        "@com_github_go_kit_kit//log:go_default_library",
+    ],
+)

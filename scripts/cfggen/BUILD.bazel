@@ -1,0 +1,42 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "cfggen_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/thanos-io/thanos/scripts/cfggen",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//pkg/alert",
+        "//pkg/cacheutil",
+        "//pkg/http",
+        "//pkg/logging",
+        "//pkg/objstore/azure",
+        "//pkg/objstore/client",
+        "//pkg/objstore/cos",
+        "//pkg/objstore/filesystem",
+        "//pkg/objstore/gcs",
+        "//pkg/objstore/oss",
+        "//pkg/objstore/s3",
+        "//pkg/objstore/swift",
+        "//pkg/query",
+        "//pkg/queryfrontend",
+        "//pkg/store/cache",
+        "//pkg/tracing/client",
+        "//pkg/tracing/elasticapm",
+        "//pkg/tracing/jaeger",
+        "//pkg/tracing/lightstep",
+        "//pkg/tracing/stackdriver",
+        "@com_github_fatih_structtag//:go_default_library",
+        "@com_github_go_kit_kit//log:go_default_library",
+        "@com_github_go_kit_kit//log/level:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+        "@in_gopkg_alecthomas_kingpin_v2//:go_default_library",
+        "@in_gopkg_yaml_v2//:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "cfggen",
+    embed = [":cfggen_lib"],
+    visibility = ["//visibility:public"],
+)

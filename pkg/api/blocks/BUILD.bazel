@@ -1,0 +1,17 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "blocks",
+    srcs = ["v1.go"],
+    importpath = "github.com/thanos-io/thanos/pkg/api/blocks",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/api",
+        "//pkg/block/metadata",
+        "//pkg/extprom/http",
+        "//pkg/logging",
+        "@com_github_go_kit_kit//log:go_default_library",
+        "@com_github_opentracing_opentracing_go//:go_default_library",
+        "@com_github_prometheus_common//route:go_default_library",
+    ],
+)

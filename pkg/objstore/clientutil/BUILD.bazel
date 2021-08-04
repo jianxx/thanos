@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "clientutil",
+    srcs = ["parse.go"],
+    importpath = "github.com/thanos-io/thanos/pkg/objstore/clientutil",
+    visibility = ["//visibility:public"],
+    deps = ["@com_github_pkg_errors//:go_default_library"],
+)
+
+go_test(
+    name = "clientutil_test",
+    srcs = ["parse_test.go"],
+    embed = [":clientutil"],
+    deps = [
+        "//pkg/testutil",
+        "@com_github_aliyun_aliyun_oss_go_sdk//oss:go_default_library",
+    ],
+)
