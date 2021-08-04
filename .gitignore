@@ -34,3 +34,6 @@ examples/tmp/
 
 # Ignore the MacOS Trash (DS-Store)
 .DS_Store
+
+# Ignore bazel artifacts
+bazel-*
