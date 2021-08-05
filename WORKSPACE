@@ -25,6 +25,18 @@ http_archive(
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
 
+http_archive(
+    name = "com_google_protobuf",
+    sha256 = "d0f5f605d0d656007ce6c8b5a82df3037e1d8fe8b121ed42e536f569dec16113",
+    strip_prefix = "protobuf-3.14.0",
+    urls = [
+        "https://mirror.bazel.build/github.com/protocolbuffers/protobuf/archive/v3.14.0.tar.gz",
+        "https://github.com/protocolbuffers/protobuf/archive/v3.14.0.tar.gz",
+    ],
+)
+
+load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
+
 go_repository(
     name = "co_elastic_go_apm",
     importpath = "go.elastic.co/apm",
@@ -1352,6 +1364,7 @@ go_repository(
 
 go_repository(
     name = "com_github_gogo_protobuf",
+    build_file_proto_mode = "disable",
     importpath = "github.com/gogo/protobuf",
     sum = "h1:Ov1cvc58UF3b5XjBnZv7+opcTcQFZebYjWzi34vdm4Q=",
     version = "v1.3.2",
@@ -3931,3 +3944,5 @@ go_rules_dependencies()
 go_register_toolchains(version = "1.16.5")
 
 gazelle_dependencies()
+
+protobuf_deps()
