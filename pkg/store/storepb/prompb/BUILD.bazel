@@ -1,36 +1,16 @@
-load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
-load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
-
-proto_library(
-    name = "prompb_proto",
-    srcs = [
-        "remote.proto",
-        "types.proto",
-    ],
-    visibility = ["//visibility:public"],
-    deps = [
-        "//gogoproto:gogoproto_proto",
-        "//store/labelpb:labelpb_proto",
-        "//store/storepb/prompb:prompb_proto",
-    ],
-)
-
-go_proto_library(
-    name = "prompb_go_proto",
-    importpath = "github.com/thanos-io/thanos/pkg/store/storepb/prompb",
-    proto = ":prompb_proto",
-    visibility = ["//visibility:public"],
-    deps = [
-        "//gogoproto:gogo_proto",
-        "//store/labelpb:types_proto",
-        "//store/storepb/prompb:types_proto",
-    ],
-)
 
 go_library(
     name = "prompb",
-    embed = [":prompb_go_proto"],
+    srcs = [
+        "remote.pb.go",
+        "types.pb.go",
+    ],
     importpath = "github.com/thanos-io/thanos/pkg/store/storepb/prompb",
     visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/store/labelpb",
+        "@com_github_gogo_protobuf//gogoproto",
+        "@com_github_gogo_protobuf//proto",
+    ],
 )

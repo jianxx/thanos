@@ -20,19 +20,25 @@ go_library(
     ],
 )
 
-go_test(
-    name = "s3_test",
-    srcs = [
-        "s3_e2e_test.go",
-        "s3_test.go",
-    ],
-    embed = [":s3"],
-    deps = [
-        "//pkg/testutil",
-        "//test/e2e/e2ethanos",
-        "@com_github_cortexproject_cortex//integration/e2e",
-        "@com_github_cortexproject_cortex//integration/e2e/db",
-        "@com_github_go_kit_kit//log",
-        "@com_github_minio_minio_go_v7//pkg/encrypt",
-    ],
+alias(
+    name = "go_default_library",
+    actual = ":s3",
+    visibility = ["//visibility:public"],
 )
+
+# go_test(
+#     name = "s3_test",
+#     srcs = [
+#         "s3_e2e_test.go",
+#         "s3_test.go",
+#     ],
+#     embed = [":s3"],
+#     deps = [
+#         "//pkg/testutil",
+#         "//test/e2e/e2ethanos",
+#         "@com_github_cortexproject_cortex//integration/e2e",
+#         "@com_github_cortexproject_cortex//integration/e2e/db",
+#         "@com_github_go_kit_kit//log",
+#         "@com_github_minio_minio_go_v7//pkg/encrypt",
+#     ],
+# )

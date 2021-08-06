@@ -27,6 +27,12 @@ go_library(
     ],
 )
 
+alias(
+    name = "go_default_library",
+    actual = ":cacheutil",
+    visibility = ["//visibility:public"],
+)
+
 go_test(
     name = "cacheutil_test",
     srcs = [

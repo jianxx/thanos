@@ -21,6 +21,12 @@ go_library(
     ],
 )
 
+alias(
+    name = "go_default_library",
+    actual = ":azure",
+    visibility = ["//visibility:public"],
+)
+
 go_test(
     name = "azure_test",
     srcs = [

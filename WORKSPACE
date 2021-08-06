@@ -1,5 +1,5 @@
 workspace(
-    name = "thanos",
+    name = "com_github_thanos_io_thanos",
 )
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
@@ -635,6 +635,7 @@ go_repository(
 
 go_repository(
     name = "com_github_cortexproject_cortex",
+    build_file_proto_mode = "disable",
     importpath = "github.com/cortexproject/cortex",
     sum = "h1:wfyZ2Vd1AgfGDiKyfQDy9Wqd5Af8PCEq02CBn/lIjgc=",
     version = "v1.8.1-0.20210422151339-cf1c444e0905",
@@ -1357,6 +1358,7 @@ go_repository(
 
 go_repository(
     name = "com_github_gogo_googleapis",
+    build_file_proto_mode = "disable",
     importpath = "github.com/gogo/googleapis",
     sum = "h1:kFkMAZBNAn4j7K0GiZr8cRYzejq68VbheufiV3YuyFI=",
     version = "v1.1.0",
@@ -1372,6 +1374,7 @@ go_repository(
 
 go_repository(
     name = "com_github_gogo_status",
+    build_file_proto_mode = "disable",
     importpath = "github.com/gogo/status",
     sum = "h1:WkVBY59mw7qUNTr/bLwO7J2vesJ0rQ2C3tMXrTd3w5M=",
     version = "v1.0.3",
@@ -2177,6 +2180,7 @@ go_repository(
 
 go_repository(
     name = "com_github_lightstep_lightstep_tracer_common_golang_gogo",
+    build_file_proto_mode = "disable",
     importpath = "github.com/lightstep/lightstep-tracer-common/golang/gogo",
     sum = "h1:143Bb8f8DuGWck/xpNUOckBVYfFbBTnLevfRZ1aVVqo=",
     version = "v0.0.0-20190605223551-bc2310a04743",
@@ -2184,6 +2188,7 @@ go_repository(
 
 go_repository(
     name = "com_github_lightstep_lightstep_tracer_go",
+    build_file_proto_mode = "disable",
     importpath = "github.com/lightstep/lightstep-tracer-go",
     sum = "h1:vi1F1IQ8N7hNWytK9DpJsUfQhGuNSc19z330K6vl4zk=",
     version = "v0.18.1",
@@ -2850,6 +2855,7 @@ go_repository(
 
 go_repository(
     name = "com_github_prometheus_prometheus",
+    build_file_proto_mode = "disable",
     importpath = "github.com/prometheus/prometheus",
     replace = "github.com/prometheus/prometheus",
     sum = "h1:MA8Ekz9W/PGSdNeWQwThN9Mpf1qiAh0BP7aKHQHNHzE=",
@@ -3244,6 +3250,7 @@ go_repository(
 
 go_repository(
     name = "com_github_weaveworks_common",
+    build_file_proto_mode = "disable",
     importpath = "github.com/weaveworks/common",
     sum = "h1:rbPhNKTbWNWchMqGWKKVYUocxiAk1ii5b8D/C49v/Lg=",
     version = "v0.0.0-20210419092856-009d1eebd624",
@@ -3667,6 +3674,7 @@ go_repository(
 
 go_repository(
     name = "io_opentelemetry_go_otel",
+    build_file_proto_mode = "disable",
     importpath = "go.opentelemetry.io/otel",
     sum = "h1:IN2tzQa9Gc4ZVKnTaMbPVcHjvzOdg5n9QfnmlqiET7E=",
     version = "v0.11.0",
@@ -3745,6 +3753,7 @@ go_repository(
 
 go_repository(
     name = "org_golang_google_protobuf",
+    build_file_proto_mode = "disable",
     importpath = "google.golang.org/protobuf",
     sum = "h1:bxAC2xTBsZGibn2RTntX0oH50xLsqy1OxA9tTL3p/lk=",
     version = "v1.26.0",

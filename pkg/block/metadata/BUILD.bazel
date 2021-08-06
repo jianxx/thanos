@@ -25,6 +25,12 @@ go_library(
     ],
 )
 
+alias(
+    name = "go_default_library",
+    actual = ":metadata",
+    visibility = ["//visibility:public"],
+)
+
 go_test(
     name = "metadata_test",
     srcs = [

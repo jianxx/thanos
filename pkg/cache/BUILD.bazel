@@ -25,6 +25,12 @@ go_library(
     ],
 )
 
+alias(
+    name = "go_default_library",
+    actual = ":cache",
+    visibility = ["//visibility:public"],
+)
+
 go_test(
     name = "cache_test",
     srcs = [

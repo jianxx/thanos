@@ -23,6 +23,12 @@ go_library(
     ],
 )
 
+alias(
+    name = "go_default_library",
+    actual = ":objstore",
+    visibility = ["//visibility:public"],
+)
+
 go_test(
     name = "objstore_test",
     srcs = ["objstore_test.go"],

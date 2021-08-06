@@ -16,6 +16,12 @@ go_library(
     ],
 )
 
+alias(
+    name = "go_default_library",
+    actual = ":model",
+    visibility = ["//visibility:public"],
+)
+
 go_test(
     name = "model_test",
     srcs = [

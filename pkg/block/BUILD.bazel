@@ -37,6 +37,12 @@ go_library(
     ],
 )
 
+alias(
+    name = "go_default_library",
+    actual = ":block",
+    visibility = ["//visibility:public"],
+)
+
 go_test(
     name = "block_test",
     srcs = [

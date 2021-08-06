@@ -17,6 +17,12 @@ go_library(
     ],
 )
 
+alias(
+    name = "go_default_library",
+    actual = ":swift",
+    visibility = ["//visibility:public"],
+)
+
 go_test(
     name = "swift_test",
     srcs = ["swift_test.go"],

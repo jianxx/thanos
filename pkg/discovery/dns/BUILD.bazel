@@ -21,6 +21,12 @@ go_library(
     ],
 )
 
+alias(
+    name = "go_default_library",
+    actual = ":dns",
+    visibility = ["//visibility:public"],
+)
+
 go_test(
     name = "dns_test",
     srcs = [
