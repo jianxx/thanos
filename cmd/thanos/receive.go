@@ -53,7 +53,10 @@ import (
 	"github.com/thanos-io/thanos/pkg/tls"
 )
 
-const compressionNone = "none"
+const (
+	compressionNone   = "none"
+	metricNamesFilter = "metric-names-filter"
+)
 
 func registerReceive(app *extkingpin.App) {
 	cmd := app.Command(component.Receive.String(), "Accept Prometheus remote write API requests and write to local tsdb.")
@@ -70,7 +73,7 @@ func registerReceive(app *extkingpin.App) {
 		if !model.LabelName.IsValid(model.LabelName(conf.tenantLabelName)) {
 			return errors.Errorf("unsupported format for tenant label name, got %s", conf.tenantLabelName)
 		}
-		if len(lset) == 0 {
+		if lset.Len() == 0 {
 			return errors.New("no external labels configured for receive, uniquely identifying external labels must be configured (ideally with `receive_` prefix); see https://thanos.io/tip/thanos/storage.md#external-labels for details.")
 		}
 
@@ -135,6 +138,14 @@ func runReceive(
 	logger = log.With(logger, "component", "receive")
 
 	level.Info(logger).Log("mode", receiveMode, "msg", "running receive")
+
+	multiTSDBOptions := []receive.MultiTSDBOption{}
+	for _, feature := range *conf.featureList {
+		if feature == metricNamesFilter {
+			multiTSDBOptions = append(multiTSDBOptions, receive.WithMetricNameFilterEnabled())
+			level.Info(logger).Log("msg", "metric name filter feature enabled")
+		}
+	}
 
 	rwTLSConfig, err := tls.NewServerConfig(log.With(logger, "protocol", "HTTP"), conf.rwServerCert, conf.rwServerKey, conf.rwServerClientCA)
 	if err != nil {
@@ -215,6 +226,7 @@ func runReceive(
 		bkt,
 		conf.allowOutOfOrderUpload,
 		hashFunc,
+		multiTSDBOptions...,
 	)
 	writer := receive.NewWriter(log.With(logger, "component", "receive-writer"), dbs, &receive.WriterOptions{
 		Intern:                   conf.writerInterning,
@@ -323,6 +335,7 @@ func runReceive(
 
 		options := []store.ProxyStoreOption{
 			store.WithProxyStoreDebugLogging(debugLogging),
+			store.WithoutDedup(),
 		}
 
 		proxy := store.NewProxyStore(
@@ -845,6 +858,8 @@ type receiveConfig struct {
 	limitsConfigReloadTimer time.Duration
 
 	asyncForwardWorkerCount uint
+
+	featureList *[]string
 }
 
 func (rc *receiveConfig) registerFlag(cmd extkingpin.FlagClause) {
@@ -925,7 +940,7 @@ func (rc *receiveConfig) registerFlag(cmd extkingpin.FlagClause) {
 	rc.tsdbMaxBlockDuration = extkingpin.ModelDuration(cmd.Flag("tsdb.max-block-duration", "Max duration for local TSDB blocks").Default("2h").Hidden())
 
 	rc.tsdbTooFarInFutureTimeWindow = extkingpin.ModelDuration(cmd.Flag("tsdb.too-far-in-future.time-window",
-		"[EXPERIMENTAL] Configures the allowed time window for ingesting samples too far in the future. Disabled (0s) by default"+
+		"Configures the allowed time window for ingesting samples too far in the future. Disabled (0s) by default"+
 			"Please note enable this flag will reject samples in the future of receive local NTP time + configured duration due to clock skew in remote write clients.",
 	).Default("0s"))
 
@@ -985,6 +1000,8 @@ func (rc *receiveConfig) registerFlag(cmd extkingpin.FlagClause) {
 	rc.writeLimitsConfig = extflag.RegisterPathOrContent(cmd, "receive.limits-config", "YAML file that contains limit configuration.", extflag.WithEnvSubstitution(), extflag.WithHidden())
 	cmd.Flag("receive.limits-config-reload-timer", "Minimum amount of time to pass for the limit configuration to be reloaded. Helps to avoid excessive reloads.").
 		Default("1s").Hidden().DurationVar(&rc.limitsConfigReloadTimer)
+
+	rc.featureList = cmd.Flag("enable-feature", "Comma separated experimental feature names to enable. The current list of features is "+metricNamesFilter+".").Default("").Strings()
 }
 
 // determineMode returns the ReceiverMode that this receiver is configured to run in.
